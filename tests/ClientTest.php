@@ -61,7 +61,18 @@
             $this->assertEquals([], Client::getAll());
         }
 
-        
+        function testSetId()
+        {
+            $id1 = 1;
+            $name1 = "Potter";
+            $test_client1 = new Client($name1, $id1);
+            $test_client1->save();
+
+            $test_client1->setClientId(2);
+            $result = $test_client1->getClientId();
+
+            $this->assertEquals(2, $result);
+        }
     }
 
  ?>
