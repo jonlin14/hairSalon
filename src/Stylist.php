@@ -21,25 +21,25 @@
 
         function save()
         {
-            $statement = $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getName()}');");
+            $GLOBALS['DB']->exec("INSERT INTO stylist (name) VALUES ('{$this->getName()}');");
         }
 
-        function getAll()
+        static function getAll()
         {
-            $all_stylists_pdo = $GLOBALS['DB']->query("SELECT * FROM hair_salon");
+            $all_stylists_pdo = $GLOBALS['DB']->query("SELECT * FROM stylist;");
             $all_stylists = array();
             foreach ($all_stylists_pdo as $element)
             {
                 $stylist_name = $element['name'];
-                $new_stylist = new Stylist('name');
+                $new_stylist = new Stylist($stylist_name);
                 array_push($all_stylists, $new_stylist);
             }
             return $all_stylists;
         }
 
-        function deleteAll()
+        static function deleteAll()
         {
-            $GLOBALS['DB']->exec('DELETE FROM stylists *');
+            $GLOBALS['DB']->exec("DELETE FROM stylists *");
         }
     }
 
