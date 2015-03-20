@@ -105,6 +105,30 @@
             $this->assertEquals($test_stylist2, $result);
         }
 
+        function test_GetClients()
+        {
+            $name1 = "Robin";
+            $id1 = 1;
+            $test_stylist = new Stylist($name1, $id1);
+            $test_stylist->save();
+
+            $test_stylist_id = $test_stylist->getId();
+
+            $id2 = 2;
+            $name2 = "Wright";
+            $test_client = new Client($name2, $id2, $test_stylist_id);
+            $test_client->save();
+
+            $id3 = 3;
+            $name3 = "Cary";
+            $test_client2 = new Client($name3, $id3, $test_stylist_id);
+            $test_client2->save();
+
+            $result = $test_stylist->getClients();
+
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
 
     }
  ?>
