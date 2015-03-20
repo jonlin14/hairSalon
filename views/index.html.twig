@@ -3,16 +3,17 @@
         <title>Hello</title>
     </head>
     <body>
+        <h1>Stylists!</h1>
          {% for stylist in stylists %}
          <li> {{ stylist.getName() }} </li>
          {% endfor %}
-
+         <p>
         <form action = '/' method = 'post'>
             <label for = 'stylist_name'>Input to add a stylist</label>
             <input id = 'stylist_name' name='stylist_name' type = 'text'>
-            <button type = 'submit'>Go!<button>
+            <button type = 'submit'>Go!</button>
         </form>
-
+        </p>
         <form action = '/delete' method = 'post'>
             <button type= 'submit'>Delete All</button>
     </body>
