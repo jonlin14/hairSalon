@@ -4,5 +4,21 @@
     </head>
     <body>
         <h1>{{ stylist.getName }}</h1>
+         {% for client in clients %}
+        <p> {{ client.getClientName() }} </p>
+         {% endfor %}
+
+         <h3> Add a Client! </h3>
+
+         <form action = '/clients' method ='post'>
+             <input id ="style_id" name="style_id" type="hidden" value="{{ stylist.getId()}}">
+
+             <label for ='client_name'> Client's Name </label>
+             <input id = 'client_name' name='client_name' type='text'>
+             <button type='submit'>Add Client</button>
+         </form>
+
+         <p><a href="/">Go to Home Page</a></p>
+
     </body>
 </html>

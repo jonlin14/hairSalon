@@ -1,6 +1,7 @@
 <?php
         require_once __DIR__."/../vendor/autoload.php";
         require_once __DIR__."/../src/Stylist.php";
+        require_once __DIR__."/../src/Client.php";
         use Symfony\Component\HttpFoundation\Request;
         Request::enableHttpMethodParameterOverride();
 
@@ -30,7 +31,15 @@
 
         $app->get("/stylists/{id}", function($id) use ($app) {
             $stylist = Stylist::find($id);
-            return $app['twig']->render('stylists.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getTasks()));
+            return $app['twig']->render('stylists.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        });
+        $app->post("/clients", function() use ($app){
+                $name = $_POST['client_name'];
+                $stylist_id = $_POST['style_id'];
+                $new_client = new Client($name, $id = null, $stylist_id);
+                $new_client->save();
+                $stylist = Stylist::find($stylist_id);
+                return $app['twig']->render('stylists.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
         });
 
         return $app;
