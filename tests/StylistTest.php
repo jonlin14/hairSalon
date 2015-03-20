@@ -17,7 +17,7 @@
             Stylist::deleteAll();
             Client::deleteAll();
         }
-        function testSave()
+        function test_Save()
         {
             $id = 1;
             $name1 = "Fezzik";
@@ -30,7 +30,7 @@
             $this->assertEquals($test_stylist1, $result[0]);
         }
 
-        function testGetAll()
+        function test_GetAll()
         {
             $id = 2;
             $name1 = "Wesley";
@@ -47,7 +47,7 @@
 
         }
 
-        function testDeleteAll()
+        function test_DeleteAll()
         {
             $id = 3;
             $name1 = "Inigo";
@@ -65,7 +65,7 @@
             $this->assertEquals([], $result);
         }
 
-        function test_getId()
+        function test_GetId()
         {
             $name1 = "Billy";
             $id = 1;
@@ -129,6 +129,19 @@
             $this->assertEquals([$test_client, $test_client2], $result);
         }
 
+        function test_Update()
+        {
+            $name1 = "Cory";
+            $id1 = 1;
+            $test_stylist = new Stylist($name1, $id1);
+            $test_stylist->save();
+
+            $new_name = "Matthews";
+
+            $test_stylist->update($new_name);
+
+            $this->assertEquals("Matthews", $test_stylist->getName());
+        }
 
     }
  ?>

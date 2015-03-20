@@ -77,8 +77,8 @@
         function getClients()
         {
             $clients = array();
-            $all_clients_pdo1 = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
-            foreach($all_clients_pdo1 as $element)
+            $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()};");
+            foreach($all_clients_pdo as $element)
             {
                 $client_name = $element['name'];
                 $id = $element['id'];
@@ -87,6 +87,12 @@
                 array_push($clients, $new_Client);
             }
             return $clients;
+        }
+
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE stylist SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
         }
     }
 
