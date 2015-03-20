@@ -41,10 +41,18 @@
                 return $app['twig']->render('stylists.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
         });
 
+        $app->delete("/stylists/{id}", function($id) use ($app) {
+                $stylist = Stylist::find($id);
+                $stylist->delete();
+                return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+        });
+
         $app->get("/stylists/{id}/edit", function($id) use ($app){
             $stylist = Stylist::find($id);
             return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
         });
+
+
 
         $app->post("/clients", function() use ($app){
                 $name = $_POST['client_name'];

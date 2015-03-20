@@ -162,7 +162,7 @@
 
         }
 
-        function test_DeleteDatabase()
+        function test_DeleteInDatabase()
         {
             $name1 = "Hunter";
             $id1 = 1;
