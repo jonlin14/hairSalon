@@ -45,7 +45,7 @@
 
         }
 
-        function deleteAll()
+        function testDeleteAll()
         {
             $id = 1;
             $name1 = "Hagrid";
@@ -60,6 +60,8 @@
 
             $this->assertEquals([], Client::getAll());
         }
+
+        
     }
 
  ?>
