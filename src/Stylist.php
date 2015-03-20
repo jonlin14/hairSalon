@@ -21,7 +21,7 @@
 
         function save()
         {
-            $statement = $GLOBALS['DB']->exec("INSERT INTO hair_salon (name) VALUES ('{$this->getName()}');");
+            $statement = $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->getName()}');");
         }
 
         function getAll()
@@ -35,6 +35,11 @@
                 array_push($all_stylists, $new_stylist);
             }
             return $all_stylists;
+        }
+
+        function deleteAll()
+        {
+            $GLOBALS['DB']->exec('DELETE FROM stylists *');
         }
     }
 
