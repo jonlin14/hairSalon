@@ -48,22 +48,32 @@
             $this->setClientId($result['id']);
         }
 
+        function update($new_name)
+            {
+                $GLOBALS['DB']->exec("UPDATE clients SET name = '{$new_name}' WHERE id = {$this->getClientId()};");
+                $this->setClientName($new_name);
+            }
 
+        function delete()
+            {
+                $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getClientId()};");
+            }
 
         static function getAll()
-        {
-            $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients");
-            $all_clients = array();
-            foreach ($all_clients_pdo as $element)
             {
-                $name = $element['name'];
-                $id = $element['id'];
-                $stylist_id = $element['stylist_id'];
-                $new_client = new Client($name, $id, $stylist_id);
-                array_push($all_clients, $new_client);
+                $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients");
+                $all_clients = array();
+
+                foreach ($all_clients_pdo as $element)
+                {
+                    $name = $element['name'];
+                    $id = $element['id'];
+                    $stylist_id = $element['stylist_id'];
+                    $new_client = new Client($name, $id, $stylist_id);
+                    array_push($all_clients, $new_client);
+                }
+                return $all_clients;
             }
-            return $all_clients;
-        }
 
         static function deleteAll()
         {
@@ -83,7 +93,5 @@
                 }
                 return $foundClient;
             }
-
-
-    }
+        }
 ?>

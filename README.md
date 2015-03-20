@@ -13,7 +13,8 @@
 
 
 #### Setup Instructions
-###### Download all attached files. Host a local server. Input the local server address in the address bar
+###### Download all attached files. Host a local server. Input the local server address in the address bar.
+###### To set up that database -> Run psql from your project folder. Create the datbase nane that you want to import the database into: CREATE DATABASE [DATABASE NAME;], switch over to the Database you just created, then do \i [DATABASE NAME].sql
 
 ## COPYRIGHT @ LIndustries Consolidated
 #### All rights reserved

@@ -19,9 +19,9 @@
         }
         function test_Save()
         {
-            $id = 1;
+            $id1 = 1;
             $name1 = "Fezzik";
-            $test_stylist1 = new Stylist($name1, $id);
+            $test_stylist1 = new Stylist($name1, $id1);
 
             $test_stylist1->save();
 
@@ -32,13 +32,13 @@
 
         function test_GetAll()
         {
-            $id = 2;
+            $id1 = 2;
             $name1 = "Wesley";
-            $test_stylist1 = new Stylist($name1);
+            $test_stylist1 = new Stylist($name1, $id1);
             $test_stylist1->save();
 
             $name2 = "Buttercup";
-            $test_stylist2 = new Stylist($name2);
+            $test_stylist2 = new Stylist($name2, $id1);
             $test_stylist2->save();
 
             $result = Stylist::getAll();
@@ -49,13 +49,13 @@
 
         function test_DeleteAll()
         {
-            $id = 3;
+            $id1 = 3;
             $name1 = "Inigo";
-            $test_stylist1 = new Stylist($name1, $id);
+            $test_stylist1 = new Stylist($name1, $id1);
             $test_stylist1->save();
 
             $name2 = "Montoya";
-            $test_stylist2 = new Stylist($name2, $id);
+            $test_stylist2 = new Stylist($name2, $id1);
             $test_stylist2->save();
 
             Stylist::deleteAll();
@@ -68,8 +68,8 @@
         function test_GetId()
         {
             $name1 = "Billy";
-            $id = 1;
-            $test_stylist1 = new Stylist($name1, $id);
+            $id1 = 1;
+            $test_stylist1 = new Stylist($name1, $id1);
 
             $result = $test_stylist1->getId();
 
@@ -79,8 +79,8 @@
         function test_SetId()
         {
             $name1 = "Crystal";
-            $id = 1;
-            $test_stylist1 = new Stylist($name1, $id);
+            $id1 = 1;
+            $test_stylist1 = new Stylist($name1, $id1);
 
             $test_stylist1->setId(2);
             $result = $test_stylist1->getId();

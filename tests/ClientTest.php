@@ -20,8 +20,8 @@
         function testSave()
         {
             $stylist1 = "Sirius";
-            $id = 2;
-            $test_stylist = new Stylist($stylist1, $id);
+            $id1 = 2;
+            $test_stylist = new Stylist($stylist1, $id1);
 
             $id1 = 1;
             $name1 = 'Harry';
@@ -41,14 +41,14 @@
             $stylist1 = "Snape";
             $test_stylist = new Stylist($stylist1, $id1);
 
-            $id = 1;
+            $id1 = 1;
             $name1 = 'Ron';
             $stylist_id = $test_stylist->getId();
-            $test_client1 = new Client($name1, $id, $stylist_id);
+            $test_client1 = new Client($name1, $id1, $stylist_id);
             $test_client1->save();
 
             $name2 = 'Hermoine';
-            $test_client2 = new Client($name2, $id, $stylist_id);
+            $test_client2 = new Client($name2, $id1, $stylist_id);
             $test_client2->save();
 
             $result = Client::getAll();
@@ -63,14 +63,14 @@
             $stylist1 = "McGonagall";
             $test_stylist = new Stylist($stylist1, $id1);
 
-            $id = 1;
+            $id1 = 1;
             $stylist_id = $test_stylist->getId();
             $name1 = "Hagrid";
-            $test_client1 = new Client($name1, $id, $stylist_id);
+            $test_client1 = new Client($name1, $id1, $stylist_id);
             $test_client1->save();
 
             $name2 = "Fawkes";
-            $test_client2 = new Client($name2, $id, $stylist_id);
+            $test_client2 = new Client($name2, $id1, $stylist_id);
             $test_client2->save();
 
             $result = Client::deleteAll();
@@ -80,9 +80,9 @@
 
         function testSetId()
         {
-            $id = 2;
+            $id1 = 2;
             $stylist1 = "James";
-            $test_stylist = new Stylist($stylist1, $id);
+            $test_stylist = new Stylist($stylist1, $id1);
 
             $id1 = 1;
             $stylist_id = $test_stylist->getId();
@@ -99,8 +99,8 @@
         function testGetId()
         {
             $stylist = "Granger";
-            $id = 1;
-            $test_stylist = new Stylist($stylist, $id);
+            $id1 = 1;
+            $test_stylist = new Stylist($stylist, $id1);
             $test_stylist->save();
 
             $id1 = 3;
@@ -115,11 +115,11 @@
             $this->assertEquals(true, $result);
         }
 
-        function testGetStylistId()
+        function test_GetStylistId()
         {
             $stylist = "Dobby";
-            $id = 1;
-            $test_stylist = new Stylist($stylist, $id);
+            $id1 = 1;
+            $test_stylist = new Stylist($stylist, $id1);
 
             $id1 = 3;
             $stylist_id = $test_stylist->getId();
@@ -129,6 +129,28 @@
 
             $this->assertEquals(true, $result);
         }
+
+        function test_Delete()
+        {
+            $name1 = "Fred";
+            $id1 = 1;
+            $test_stylist = new Stylist($name1, $id1);
+            $test_stylist->save();
+
+            $name2 = "George";
+            $id2 = 2;
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Stylist($name2, $id2, $stylist_id);
+            $test_client->save();
+
+            $test_client->delete();
+            $result = Client::getAll();
+
+            $this->assertEquals([], $result);
+
+        }
+
+
     }
 
  ?>
