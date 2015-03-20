@@ -44,6 +44,23 @@
 
         }
 
+        function testDeleteAll()
+        {
+            $name1 = "Inigo";
+            $test_stylist1 = new Stylist($name1);
+            $test_stylist1->save();
+
+            $name2 = "Montoya";
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            Stylist::deleteAll();
+
+            $result = Stylist::getAll();
+
+            $this->assertEquals([], $result);
+        }
+
 
 
     }
