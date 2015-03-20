@@ -64,7 +64,7 @@
 
             foreach ($all_stylists as $element)
             {
-                
+
                 if ($element->getId() == $find_id)
                 {
                     $found_stylist = $element;
