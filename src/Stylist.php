@@ -8,7 +8,7 @@
         function __construct($new_name, $id = null)
         {
             $this->name= $new_name;
-            $this->id = $new_id;
+            $this->id = $id;
         }
 
         function setName($new_name)
@@ -45,7 +45,8 @@
             foreach ($all_stylists_pdo as $element)
             {
                 $stylist_name = $element['name'];
-                $new_stylist = new Stylist($stylist_name);
+                $id = $element['id'];
+                $new_stylist = new Stylist($stylist_name, $id);
                 array_push($all_stylists, $new_stylist);
             }
             return $all_stylists;
@@ -54,6 +55,23 @@
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylist *");
+        }
+
+        static function find($find_id)
+        {
+            $all_stylists = Stylist::getAll();
+            $found_stylist = null;
+
+            foreach ($all_stylists as $element)
+            {
+                
+                if ($element->getId() == $find_id)
+                {
+                    $found_stylist = $element;
+                }
+            }
+            return $found_stylist;
+
         }
     }
 

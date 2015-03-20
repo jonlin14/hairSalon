@@ -18,8 +18,9 @@
         }
         function testSave()
         {
+            $id = 1;
             $name1 = "Fezzik";
-            $test_stylist1 = new Stylist($name1);
+            $test_stylist1 = new Stylist($name1, $id);
 
             $test_stylist1->save();
 
@@ -30,6 +31,7 @@
 
         function testGetAll()
         {
+            $id = 2;
             $name1 = "Wesley";
             $test_stylist1 = new Stylist($name1);
             $test_stylist1->save();
@@ -46,12 +48,13 @@
 
         function testDeleteAll()
         {
+            $id = 3;
             $name1 = "Inigo";
-            $test_stylist1 = new Stylist($name1);
+            $test_stylist1 = new Stylist($name1, $id);
             $test_stylist1->save();
 
             $name2 = "Montoya";
-            $test_stylist2 = new Stylist($name2);
+            $test_stylist2 = new Stylist($name2, $id);
             $test_stylist2->save();
 
             Stylist::deleteAll();
@@ -63,10 +66,42 @@
 
         function test_getId()
         {
-            $name1 = "Billy"
+            $name1 = "Billy";
             $id = 1;
-            $test_Stylist1 = new Stylist($name1);
-            
+            $test_stylist1 = new Stylist($name1, $id);
+
+            $result = $test_stylist1->getId();
+
+            $this->assertEquals(1, $result);
+        }
+
+        function test_SetId()
+        {
+            $name1 = "Crystal";
+            $id = 1;
+            $test_stylist1 = new Stylist($name1, $id);
+
+            $test_stylist1->setId(2);
+            $result = $test_stylist1->getId();
+
+            $this->assertEquals(2, $result);
+        }
+
+        function test_Find()
+        {
+            $name1 = "Rugen";
+            $id1 = 1;
+            $test_stylist1 = new Stylist($name1, $id1);
+            $test_stylist1->save();
+
+            $name2 = "Andre";
+            $id2 = 2;
+            $test_stylist2 = new Stylist($name2, $id2);
+            $test_stylist2->save();
+
+            $result = Stylist::find($test_stylist2->getId());
+
+            $this->assertEquals($test_stylist2, $result);
         }
 
 
