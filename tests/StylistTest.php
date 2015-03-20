@@ -143,5 +143,41 @@
             $this->assertEquals("Matthews", $test_stylist->getName());
         }
 
+        function test_Delete()
+        {
+            $name1 = "Topanga";
+            $id1 = 1;
+            $test_stylist = new Stylist($name1, $id1);
+            $test_stylist->save();
+
+            $name2 = "Lawrence";
+            $id2 = 2;
+            $test_stylist2 = new Stylist($name2, $id2);
+            $test_stylist2->save();
+
+            $test_stylist2->delete();
+            $result = Stylist::getAll();
+
+            $this->assertEquals([$test_stylist], $result);
+
+        }
+
+        function test_DeleteDatabase()
+        {
+            $name1 = "Hunter";
+            $id1 = 1;
+            $test_stylist = new Stylist($name1, $id1);
+            $test_stylist->save();
+
+            $name2 = "Minkus";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name2, $id1, $stylist_id);
+            $test_client->save();
+
+            $test_stylist->delete();
+
+            $this->assertEquals([], Client::getAll());
+        }
+
     }
  ?>
