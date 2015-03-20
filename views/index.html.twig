@@ -5,7 +5,7 @@
     <body>
         <h1>Stylists!</h1>
          {% for stylist in stylists %}
-         <li> {{ stylist.getName() }} </li>
+         <li> <a href="/stylists/{{ stylist.getId }}">{{ stylist.getName() }} </a> </li>
          {% endfor %}
          <p>
         <form action = '/' method = 'post'>
