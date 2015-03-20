@@ -5,7 +5,7 @@
     <body>
         <h1>{{ stylist.getName }}</h1>
          {% for client in clients %}
-        <p> <a href="/client/{{ client.getClientId }}/edit">{{ client.getClientName() }} </a></p>
+        <p> Client :<a href="/client/{{ client.getClientId }}/edit">{{ client.getClientName() }} </a></p>
          {% endfor %}
 
          <h3> Add a Client! </h3>
