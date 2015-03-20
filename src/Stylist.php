@@ -2,11 +2,13 @@
 
     class Stylist {
         private $name;
+        private $id;
 
 
-        function __construct($new_name)
+        function __construct($new_name, $id = null)
         {
             $this->name= $new_name;
+            $this->id = $new_id;
         }
 
         function setName($new_name)
@@ -19,9 +21,21 @@
             return $this->name;
         }
 
+        function setId($new_id)
+        {
+            $this->id = $new_id;
+        }
+
+        function getId()
+        {
+            return $this->id;
+        }
+
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO stylist (name) VALUES ('{$this->getName()}');");
+            $statement = $GLOBALS['DB']->query("INSERT INTO stylist (name) VALUES ('{$this->getName()}') RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setId($result['id']);
         }
 
         static function getAll()

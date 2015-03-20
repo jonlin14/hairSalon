@@ -61,6 +61,13 @@
             $this->assertEquals([], $result);
         }
 
+        function test_getId()
+        {
+            $name1 = "Billy"
+            $id = 1;
+            $test_Stylist1 = new Stylist($name1);
+            
+        }
 
 
     }
