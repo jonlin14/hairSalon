@@ -36,6 +36,8 @@
             $this->setClientId($result['id']);
         }
 
+
+
         static function getAll()
         {
             $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients");
@@ -55,6 +57,20 @@
             $GLOBALS['DB']->exec("DELETE FROM clients *;");
         }
 
+        static function find($find_id)
+            {
+                $foundClient = null;
+                $all_Clients = Client::getAll();
+                foreach ($all_Clients as $element)
+                {
+                    if ($element->getClientId() == $find_id)
+                    {
+                        $foundClient = $element;
+                    }
+                }
+                return $foundClient;
+            }
+
 
     }
- ?>
+?>

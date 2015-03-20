@@ -79,12 +79,13 @@
             $id1 = 3;
             $name1 = "Weasley";
             $test_client1 = new Client($name1, $id1);
-            
+
 
             $result = $test_client1->getClientId();
 
             $this->assertEquals(3, $result);
         }
+
     }
 
  ?>
