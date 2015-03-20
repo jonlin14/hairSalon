@@ -31,7 +31,9 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO clients VALUES ('{this->getClientName}');");
+            $statement = $GLOBALS['DB']->query("INSERT INTO clients (name) VALUES ('{$this->getClientName()}') RETURNING id;");
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->setClientId($result['id']);
         }
 
         static function getAll()
@@ -41,7 +43,8 @@
             foreach ($all_clients_pdo as $element)
             {
                 $name = $element['name'];
-                $new_client = new Client($name);
+                $id = $element['id'];
+                $new_client = new Client($name, $id);
                 array_push($all_clients, $new_client);
             }
             return $all_clients;

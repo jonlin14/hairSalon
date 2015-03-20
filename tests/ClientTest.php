@@ -14,7 +14,7 @@
         {
             Client::deleteAll();
         }
-        
+
         function testSave()
         {
             $id1 = 1;
@@ -24,7 +24,7 @@
             $test_client1->save();
             $result = Client::getAll();
 
-            $this->assertEquals($test_client1, $result);
+            $this->assertEquals($test_client1, $result[0]);
 
         }
     }
