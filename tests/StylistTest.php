@@ -18,7 +18,7 @@
         }
         function testSave()
         {
-            $name1 = "Jim";
+            $name1 = "Fezzik";
             $test_stylist1 = new Stylist($name1);
 
             $test_stylist1->save();
@@ -26,6 +26,22 @@
             $result = Stylist::getAll();
 
             $this->assertEquals($test_stylist1, $result[0]);
+        }
+
+        function testGetAll()
+        {
+            $name1 = "Wesley";
+            $test_stylist1 = new Stylist($name1);
+            $test_stylist1->save();
+
+            $name2 = "Buttercup";
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            $result = Stylist::getAll();
+
+            $this->assertEquals([$test_stylist1, $test_stylist2], $result);
+
         }
 
 
