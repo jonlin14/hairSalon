@@ -34,9 +34,9 @@
             $GLOBALS['DB']->exec("INSERT INTO clients VALUES ('{this->getClientName}');");
         }
 
-        function getAll()
+        static function getAll()
         {
-            $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients")
+            $all_clients_pdo = $GLOBALS['DB']->query("SELECT * FROM clients");
             $all_clients = array();
             foreach ($all_clients_pdo as $element)
             {
@@ -45,6 +45,11 @@
                 array_push($all_clients, $new_client);
             }
             return $all_clients;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM clients *;");
         }
 
 
