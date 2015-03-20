@@ -27,6 +27,23 @@
             $this->assertEquals($test_client1, $result[0]);
 
         }
+
+        function testGetAll()
+        {
+            $id = 1;
+            $name1 = 'Ron';
+            $test_client1 = new Client($name1, $id);
+            $test_client1->save();
+
+            $name2 = 'Hermoine';
+            $test_client2 = new Client($name2, $id);
+            $test_client2->save();
+
+            $result = Client::getAll();
+
+            $this->assertEquals([$test_client1, $test_client2], $result);
+
+        }
     }
 
  ?>
